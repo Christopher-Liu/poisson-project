@@ -1,0 +1,16 @@
+\frametitle{Smoking and Lung Cancer Dataset}
+
+	\begin{figure}
+	\centering
+		\includegraphics[height=4cm]{"data"}
+	\end{figure}
+
+	\begin{itemize}
+		\footnotesize{
+			\item age at start of study: coded 1 to 9 for 40-44, 45-49, 50-54, 55-59, 60-64, 65-69, 70-74, 75-79, 80+ respectively
+			\item smoking status: 1 = never smoked, 2 = smoked cigars or pipe only, 3 = smoked cigarettes and cigar or pipe, 4 = smoked cigarettes only
+			\item population: number of male pensioners followed
+			\item deaths: number of deaths in a six-year period
+		}
+	\end{itemize}
+

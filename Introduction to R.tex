@@ -1,0 +1,385 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{metropolis}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage{bookmark}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{framed}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{ulem}
+
+\def\s{\phantom{-}}
+
+\title[Introduction to R]{Introduction to programming in R}
+\author{Dr. JC Rom{\'a}n}
+\institute{SDSU Mathematics and Statistics}
+\date{}
+
+
+
+\begin{document}
+	
+
+	%\begin{frame}[fragile]
+\begin{frame}[plain]
+	\titlepage
+	
+	\footnote{a}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{What is R?}
+	
+	\textbf{Language:} Object-Oriented, high-level language based on \textbf{S}. Interpreted (uses scripts), similar to Python, Matlab. \\
+	
+	\textbf{Software:} Modular. Packages download from CRAN (easy install from inside R). Free under GNU GPL \& other public licenses.\\
+	
+	\textbf{Download:} \url{http://www.r-project.org/}
+	
+\end{frame}
+
+\begin{frame}\frametitle{Downloading R}
+	\begin{enumerate}		
+		\item Visit \url{http://www.r-project.org/}
+		\item Click on ``Download R"
+		\item Scroll down to USA and click on \url{http://cran.stat.ucla.edu/}
+		\item Download the appropriate installer for your operating system.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{RStudio} 
+	R-Studio is an integrated development environment (IDE)/ graphical user interface (GUI) for R that adds a few useful features.
+	\begin{itemize}
+		\item Improved GUI, package management, coding tools: Code Completion, Syntax Highlighting, etc.
+		\item Consistency across platforms: Windows, Mac OS , Linux
+	\end{itemize}
+	R-Studio can be downloaded for free at
+	\begin{center}
+		\url{http://www.rstudio.com}\\
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{R Tutorials}
+	\textbf{Resources:}
+	\begin{enumerate}
+		\item \textbf{Quick-R} @ \url{http://www.statmethods.net}
+		\item R-tutor @ \url{http://www.r-tutor.com/}
+		\item Interactive \textbf{R} sessions via \texttt{swirl} @ \url{http://swirlstats.com/} and at \url{http://tryr.codeschool.com/}
+		\item Online search 
+	\end{enumerate}	
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Reading Data into R}
+	\begin{itemize}
+		\item We load a text file into R with \verb|read.table("filename.txt")|
+		\item We load a csv file into R with \verb|read.csv("filename.csv")|
+	\end{itemize}
+	Example:
+	\begin{framed}
+		\begin{verbatim}
+		> #read csv
+		> nba=read.csv(file = "NBA2015Data.csv", header = T)
+		\end{verbatim}
+	\end{framed}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Basic manipulation with Dataframes}
+	With the nba dataset loaded, let's answer a few questions:
+\vspace{-10pt}
+\small
+	\begin{itemize}
+		\item What are the variable names?\\
+		\verb|> names(nba)|\\
+		\verb|"Player" "Team" ... "PLUSMINUS"|
+		\item What are the dimensions of nba? 492 rows and 28 columns \\
+		\verb|> dim(nba)|\\
+		\verb|[1] 492  28|
+		\item Show the first six rows of the dataset.\\
+		\verb|> head(nba)|
+		\item Let's find the statistics of nba player Lebron James.\\
+		\verb|> nba[nba$Player == "LeBron James", ]|
+		\item Let's find specifically his points per game (PTS) and field goal percentage (FG\%) stats.\\
+		\verb|> nba[nba$Player == "LeBron James", c("PTS", "FGP")]|\\
+		\verb|     PTS   FGP|\\
+		\verb|     25.3  48.8|
+	\end{itemize}	
+\end{frame}
+
+\begin{frame}[fragile]{Basic Manipulation with Data Frames continued}
+	What are the summary statistics of PPG and FG\%?
+	\begin{framed}
+		\vspace{-10pt}
+		\begin{verbatim}
+		> summary(nba[ , c("PTS", "FGP")])
+		
+		PTS              FGP        
+		Min.   : 0.000   Min.   :  0.00  
+		1st Qu.: 4.000   1st Qu.: 39.60  
+		Median : 6.900   Median : 42.90  
+		Mean   : 8.123   Mean   : 43.13  
+		3rd Qu.:11.625   3rd Qu.: 47.60  
+		Max.   :28.100   Max.   :100.00  
+		\end{verbatim}
+	\end{framed}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Regression Example}
+	Plot a linear model of PTS vs MIN (Time on Court per game) for the nba dataset.
+	\vspace{-5pt}
+	\begin{framed}
+		\verb|> plot(nba$MIN, nba$PTS,|\\
+		\verb|+ xlab = "minutes", ylab = "points per game",|\\
+		\verb|+ main = "NBA PPG vs MIN")|\\
+		\verb|> abline(lm(PTS ~ MIN, data = nba), col = "red")|
+\vspace{-18pt}
+\begin{figure}
+\centering
+\includegraphics[width=5cm, height=5cm]{"nba plot1"}
+
+\label{fig:nba-plot1}
+\end{figure}
+	\end{framed}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Regression Example Continued}
+	One could obtain a better fitting curve to the plot of PTS vs MIN with more statistical knowledge and tools as shown:
+\begin{figure}
+\centering
+\includegraphics[width=7cm, height=7cm]{"nba plot2"}
+\label{fig:nba-plot2}
+\end{figure}
+\end{frame}
+%
+%\begin{frame}[fragile]\frametitle{R vs Matlab} 
+%	\begin{itemize}
+%		\item 	Like Matlab, \textbf{R} is widely used as a computing tool. 
+%		\item 	Syntax is very similar between R and Matlab.
+%		\item	\textbf{R} excels at statistics, graphics, many packages available, free
+%		\item \textbf{Matlab }is well supported and widely used.
+%		\item R is open source, whereas MatLab is closed source.
+%		\item 	R command "cheat sheet" for Matlab users:
+%		\url{http://mathesaurus.sourceforge.net/octave-r.html}
+%		\item 	R command "cheat sheet" for Matlab users:
+%		\url{http://mathesaurus.sourceforge.net/octave-r.html}
+%		\item 	David Hiebler's Matlab/R Reference \url{http://math.umaine.edu/~hiebeler/comp/matlabR.html}
+%	\end{itemize}
+%\end{frame}
+
+%
+%\begin{frame}[fragile]\frametitle{R Comments with other Computational Programs} 
+%	\textbf{R} competes well against other statistical programs such as: \textbf{SAS}, \textbf{Minitab}, etc.\\
+%	\begin{itemize}
+%		\item \url{http://r4stats.com/articles/popularity/}
+%		\item \url{http://www.analyticsvidhya.com/blog/2015/05/infographic-quick-guide-sas-python/} 
+%		\item \url{http://www.burtchworks.com/2015/05/21/2015-sas-vs-r-survey-results/} \\
+%	\end{itemize}
+%	
+%	\textbf{Python is a strong contender!} Popular in physics, engineering, web development, SAGE is python based, etc. \textbf{R} slower, but excels at statistics and graphics.\\
+%	
+%	\textbf{See this R vs Python comparison for details:} \url{https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis}\\
+%	
+%	Packages exist to run \textbf{R} code within \textbf{Python}, and \textit{vice versa}\\
+%	
+%\end{frame}
+%
+%
+
+
+
+	
+\begin{frame}[fragile]\frametitle{Defining Types}
+		There are several \textit{types} used in R: numeric, logical, character, integer, matrix, array, data frame, etc.
+		\begin{itemize}
+			\item Numeric types are decimal value objects stored as single numbers or a vector
+			\item Integer types are the integer part of a numeric type.  
+			\item Logical types are logical values TRUE or FALSE.
+			\item Character types are strings represented in R.
+			\item Arrays are objects/vectors with multiple dimensions
+			\item Matrices are two-dimensional arrays
+			\item A data frame is used for storing data tables. It is a collection of vectors of equal length.
+		\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Example of Types}
+	\begin{framed}
+				\vspace{-0.25cm}
+		\begin{verbatim}
+		> A = 1
+		> class(A)
+		[1] "numeric"
+		> as.integer(A) #convert to integer use
+		[1] 1
+		> class(as.integer(A))
+		[1] "integer"
+		> B = "SDSU REU" #string
+		> class(B) 
+		[1] "character"
+		> C = 1234.5 
+		> class(C)
+		[1] "numeric"
+		
+		\end{verbatim}
+	\end{framed}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Example of Types}
+	\begin{framed}
+		\vspace{-0.25cm}
+		\begin{verbatim}
+		> D = T #equivalent to TRUE
+		> class(D)
+		[1] "logical"
+		> E = c(1, 2, 3, 4, 5) # equivalent to  1:5
+		> class(E)
+		[1] "numeric"
+		> f = array(1:6, c(2, 3)) # F is reserved for FALSE
+		> class(f)
+		[1] "matrix"
+		> f
+		[,1] [,2] [,3]
+		[1,]    1    3    5
+		[2,]    2    4    6
+		\end{verbatim}
+	\end{framed}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Example of Types}
+	\begin{framed}
+		\vspace{-0.5cm}
+		\begin{verbatim}
+		> G = matrix(1:6, nrow = 2, ncol = 3, byrow = T)
+		> class(G)
+		[1] "matrix"
+		> G
+		[,1] [,2] [,3]
+		[1,]    1    2    3
+		[2,]    4    5    6
+		> H = as.matrix(f)
+		> class(H)
+		[1] "matrix"
+		> H
+		[,1] [,2] [,3]
+		[1,]    1    3    5
+		[2,]    2    4    6
+		\end{verbatim}
+	\end{framed}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Fibonacci Example}
+	Recall the Fibonacci sequence is defined recursively from $F(n)=F(n-1)+F(n-2)$ for $n>1$ with $F(0)=0$ and $F(1)=1$.
+	\begin{framed}
+		\begin{verbatim}
+		> fibR <- function(n){
+		+   if(n == 0){return(0)}
+		+   if(n == 1){return(1)}
+		+   return(fibR(n-1) + fibR(n-2))}
+		> start.time <- Sys.time()
+		> fibR(40)
+		[1] 102334155
+		> Sys.time() - start.time #How long to compute
+		Time difference of 6.22482 mins 
+		\end{verbatim}
+	\end{framed}
+	
+	\textbf{Remark}:  There are more efficient ways to code this function. 
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Fibonacci Example Continued}
+	Let's make a plot of the time it takes to compute the $n^{th}$ Fibonacci number versus the index.
+	\begin{framed}
+		\begin{verbatim}
+		> n = 1:30
+		> time = rep(NA, length=30)
+		> for(i in 1:30){
+		+   start.time = Sys.time()
+		+   fibR(i)
+		+   time[i] = Sys.time() - start.time
+		+ }
+		> plot(n,time,type = "l")
+		\end{verbatim}
+	\end{framed}
+\end{frame}
+
+\begin{frame}{Fibonacci Example Continued}
+	
+\begin{figure}
+\centering
+\includegraphics[width=7cm, height=7cm]{"Calc time vs Fibonacci plot"}
+\label{fig:calc-time-vs-fibonacci-plot}
+\end{figure}
+		
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Pros and Cons of R}
+	\textbf{R Pros}?
+	\begin{enumerate}
+		\item \textbf{R} for \textbf{statistics}, or as a \textbf{general computing platform}
+		\item \textbf{Free} and widely used in academia and industry
+		\item Many resources to support \textbf{teaching} and \textbf{research}
+		\item Integrates well with other software
+	\end{enumerate}
+	\textbf{Cons?}
+	\begin{enumerate}
+		\item \textit{Slow!} Not a low-level language
+		\item Symbolic tools are limited 
+		\item Memory management problems (depending on your OS), especially when displaying high resolution images or working with huge matrices (hundreds of Mb).
+		\item \textbf{Learning Curve!}\\ R is lower than specialized ``point-and-click" tools
+		
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{R packages}
+	\begin{itemize}
+		\item To install new custom packages/libraries use \verb|install.packages("packagename")|.
+		\item To load the package into R use \verb|library(packagename)|.
+		\item Parallel computing requires ``doParallel" package
+		\item C++ integration requires packages ``Rcpp" and ``inline".
+%		\item JAGS (for MCMC algorithms) integration requires ``Rjags" package.
+	\end{itemize}
+\end{frame}
+%
+%\begin{frame}[fragile]\frametitle{Extensions}
+%	\begin{itemize}
+%		\item Fancy graphics: ggplot, shiny, plotly, etc.
+%		\item Online compiler: \url{www.getdatajoy.com}
+%		\item Other Programming tool: Julia @ \url{http://julialang.org/}
+%		\begin{itemize}
+%			\item Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments like R or MatLab.
+%			\item Performance is close to C/C++.
+%			\item Tutorials @ 
+%			\begin{itemize}
+%			\item \url{http://forio.com/labs/julia-studio/tutorials/} \item \url{http://www.quant-econ.net/jl/index.html}
+%			\end{itemize}
+%		\end{itemize}
+%	\end{itemize}
+%\end{frame}
+\begin{frame}\frametitle{Exercises}
+	\begin{enumerate}
+		\item Create a vector that samples 15 numbers from the sequence 1,2,3,...20; once with replacement, and once without replacement. (Hint: use "sample()")
+		\item Find the mean and standard deviation of the sample. (use "mean()",  "sqrt(var())", and "sd()")
+		\item Plot a histogram of the sample. (Use the "hist()" function)
+		\item Plot the function $f(x)=x^3+3x^2+3x+1$ using R. Title the plot with the function $f(x)=x^3+3x^2+3x+1$. Add color. 
+		\item Create a function that considers numerical inputs and returns the 1 if the input is odd, and 0 if the input is even. 
+		\item Create a function that computes the inverse of a 2x2 matrix. Compare your function with ``solve(matrix)".
+		\item Create a function that computes the $n^{th}$ term of the sequence as defined by $a_n=a_{n-1}+a_{n-2}-a_{n-3}$ for $n>2$ where $a_0=1, a_1=2,a_2=3$.
+	\end{enumerate}
+\end{frame}
+\end{document}

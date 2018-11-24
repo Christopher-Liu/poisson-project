@@ -1,0 +1,117 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{metropolis}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage{bookmark}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{framed}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{ulem}
+
+\def\s{\phantom{-}}
+
+\title{Robust Poisson Regression}
+\author{Siyu Zhao, Zheming Yu, Christopher Liu, Runnan Liu, Shiming Zhang}
+\institute{San Diego State University, Stats 610}
+\date{10/13/2018}
+
+\begin{document}
+
+	
+
+\begin{frame}[plain]
+
+	\titlepage
+	
+	\footnote{a}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{The Poisson Distribution}
+
+	A random variable Y is said to have a Poisson distribution with parameter $\lambda$ if its probability is given by the probability mass function
+	$$Pr(Y = y) = \frac{e^{-\lambda}\lambda^{y}}{y!}$$
+	for $\lambda > 0$ and y = 0, 1, 2, ... 
+ 
+	The mean and variance of this distribution can be shown to be
+	$$E(Y) = Var(Y) = \lambda$$ 
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{What is Poisson Regression?}
+	In Poisson regression
+	
+	\begin{itemize}
+	
+		\item Model used when the response variable, Y, is a count (eg. Number of vehicle accidents per year, number of visits to a website over a certain time span, etc)
+		\item We can also have the response variable be Y/t, the rate of the event happening with t being an interval representing time, space, or some other grouping.
+
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Robust Poisson Regression}
+	
+	[Placeholder Text]	
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Smoking and Lung Cancer Dataset}
+
+	\textbf{Smoking and Lung Cancer} 
+	
+	We will be using data originally collected from a Canadian study of mortality by age and smoking status
+	
+	The file containing cleaned data comes from the website of Professor German Rodriguez of Princeton University 
+	
+	link: http://data.princeton.edu/wws509/datasets/smoking.raw
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Smoking and Lung Cancer Dataset}
+
+	\begin{figure}
+	\centering
+		\includegraphics[height=4cm]{"data"}
+	\end{figure}
+
+	\begin{itemize}
+		\footnotesize{
+			\item age at start of study: coded 1 to 9 for 40-44, 45-49, 50-54, 55-59, 60-64, 65-69, 70-74, 75-79, 80+ respectively
+			\item smoking status: 1 = never smoked, 2 = smoked cigars or pipe only, 3 = smoked cigarettes and cigar or pipe, 4 = smoked cigarettes only
+			\item population: number of male pensioners followed
+			\item deaths: number of deaths in a six-year period
+		}
+	\end{itemize}
+
+\end{frame}
+
+
+
+\end{document}
