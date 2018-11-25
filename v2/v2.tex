@@ -42,11 +42,11 @@
 \begin{frame}[fragile]\frametitle{The Poisson Distribution}
 
 	A random variable Y is said to have a Poisson distribution with parameter $\lambda$ if its probability is given by the probability mass function
-	$$Pr(Y = y) = \frac{e^{-\lambda}\lambda^{y}}{y!}$$
+	$$ Pr(Y = y) = \frac{e^{-\lambda}\lambda^{y}}{y!} $$
 	for $\lambda > 0$ and y = 0, 1, 2, ... 
  
 	The mean and variance of this distribution can be shown to be
-	$$E(Y) = Var(Y) = \lambda$$ 
+	$$ E(Y) = Var(Y) = \lambda $$ 
 
 \end{frame}
 
@@ -57,65 +57,84 @@
 	
 	\begin{itemize}
 	
-		\item Model used when the response variable, $Y_{i}$, is a count (eg. Number of vehicle accidents per year, number of visits to a website over a certain time span, etc)
-		\item We can also have the response variable be $Y_{i}$/t, the rate of the event happening with t being an interval representing time, space, or some other grouping
+		\item Model used when the desired response variable, $Y_{i}$, is a count (eg. Number of vehicle accidents per year, number of visits to a website over a certain time span, etc)
+		\item We can also have the response variable be $Y_{i}$/t, the rate at which the event happens with t being an interval representing time, space, or some other grouping of interest
 
 	\end{itemize}
 
 \end{frame}
 
 
-\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression?}
-	In Poisson regression:
+
+\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}
+
+	\begin{itemize}
+		
+		\item The regression model with the log link function:
+ 		$$ log(\lambda_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  		
+ 		where $ E(Y_i) = \lambda_i = e^{X_i \beta}$
+
+		\item Predictor variables are estimated by maximizing the likelihood function:
+		$$ L(\beta) = \prod_{i=1}^{n} f(Y_i) = \prod_{i=1}^{n} \frac{ e^{-\lambda_i} \lambda_i^{Y_i} }{Y_i!} $$
+		
+	\end{itemize}
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Poisson Regression with Robust Standard Errors}
+	
+	Our focus, however, is to discuss \textbf{Poisson Regression with Robust Standard Errors}
+
+	\begin{itemize}
+	
+		\item Modified Poisson Regression that can work with response variables with binary outcomes
+		
+		\item Addresses problems with overdispersion
+
+	\end{itemize}
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Poisson Regression with Robust Standard Errors}
+
+	Main problem is with the Poisson assumption of 	
+	$$ E(Y_i) = Var(Y_i) $$ 
+
+	\begin{itemize}
+
+		\item With binomial data, Poisson regression usually underestimates variance of data
+		
+		\item We need a way to address this problem when making inferences
+
+	\end{itemize}
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Poisson Regression with Robust Standard Errors}
+	
+	The only adjustments to make:	
 	
 	\begin{itemize}
 	
-		\item 
+		\item We keep the maximum likelihood estimates of $ \beta $
+		
+		\item The standard errors, however, are replaced with "robust" standard errors from the sandwich estimator
 
 	\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{Modified Poisson Regression}
-	
-	Our focus for this video series is to talk about a modified Poisson Regression model for use with data with only binary outcomes
 	
 \end{frame}
 
 
 
-\begin{frame}[fragile]\frametitle{Smoking and Lung Cancer Dataset}
-
-	\textbf{Smoking and Lung Cancer} 
+\begin{frame}[fragile]\frametitle{Poisson Regression with Robust Standard Errors}
 	
-	We will be using data originally collected from a Canadian study of mortality by age and smoking status
 	
-	The file containing cleaned data comes from the website of Professor German Rodriguez of Princeton University 
-	
-	link: http://data.princeton.edu/wws509/datasets/smoking.raw
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{Smoking and Lung Cancer Dataset}
-
-	\begin{figure}
-	\centering
-		\includegraphics[height=4cm]{"data"}
-	\end{figure}
-
-	\begin{itemize}
-		\footnotesize{
-			\item age at start of study: coded 1 to 9 for 40-44, 45-49, 50-54, 55-59, 60-64, 65-69, 70-74, 75-79, 80+ respectively
-			\item smoking status: 1 = never smoked, 2 = smoked cigars or pipe only, 3 = smoked cigarettes and cigar or pipe, 4 = smoked cigarettes only
-			\item population: number of male pensioners followed
-			\item deaths: number of deaths in a six-year period
-		}
-	\end{itemize}
-
 \end{frame}
 
 
