@@ -20,7 +20,7 @@
 
 \def\s{\phantom{-}}
 
-\title{Poisson Regression with Robust Standard Errors}
+\title{Introduction to Poisson Regression with Robust Standard Errors - Part 1}
 \author{Christopher Liu, Siyu Zhao, Zheming Yu, Runnan Liu, Shiming Zhang}
 \institute{San Diego State University, Stats 610}
 \date{11/29/2018}
@@ -34,6 +34,19 @@
 	\titlepage
 	
 	\footnote{a}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{The Poisson Distribution}
+
+	A random variable Y is said to have a Poisson distribution with parameter $\lambda$ if its probability is given by the probability mass function
+	$$ Pr(Y = y) = \frac{e^{-\lambda}\lambda^{y}}{y!} $$
+	for $\lambda > 0$ and y = 0, 1, 2, ... 
+ 
+	The mean and variance of this distribution can be shown to be
+	$$ E(Y) = Var(Y) = \lambda $$ 
 
 \end{frame}
 
@@ -71,13 +84,26 @@
 	\begin{itemize}
 		
 		\item The regression model with the log link function:
- 		$$ log(\lambda_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  		
- 		where $ E(Y_i) = \lambda_i = e^{X_i \beta}$
+ 		$$ log(\lambda_i|X_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  		
+ 		where $ E(Y_i|X_i) = \lambda_i = e^{X_i \beta}$
 
 		\item Predictor variables are estimated by maximizing the likelihood function:
 		$$ L(\beta) = \prod_{i=1}^{n} f(Y_i) = \prod_{i=1}^{n} \frac{ e^{-\lambda_i} \lambda_i^{Y_i} }{Y_i!} $$
 		
 	\end{itemize}
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}	
+	
+	Take the simple case: $$ log(\lambda_i|x) = \beta_0 + \beta_1 x $$
+
+	Consider the difference between the mean response given $(x+1)$ and the mean response given $x$: 
+			  $$ log(\lambda_i|x+1) - log(\lambda_i|x) $$
+			  $$ = \beta_0 + \beta_1 (x + 1) - (\beta_0 + \beta_1 x) = \beta_1 $$
+			  $$ \implies \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = e^{\beta_1} $$
 	
 \end{frame}
 
@@ -118,15 +144,17 @@
 
 \begin{frame}[fragile]\frametitle{Poisson Regression with Robust Standard Errors}
 	
-	The only adjustments to make:	
+	The only adjustment to make:	
 	
 	\begin{itemize}
-	
-		\item We keep the maximum likelihood estimates of $ \beta $
 		
-		\item The standard errors, however, are replaced with "robust" standard errors from the sandwich estimator
-
-	\end{itemize}
+		\item The standard errors of the estimated predictors ($\hat{\beta}$) are replaced with "robust" standard errors from the sandwich estimator 
+		
+		$$ Var(\hat{\beta}) = (X^{T}X)^{-1}X^{T} \Sigma X(X^{T}X)^{-1} $$
+		
+		where $\Sigma$ is the covariance matrix of the residuals			
+		
+	\end{itemize}	
 	
 \end{frame}
 
@@ -134,9 +162,56 @@
 
 \begin{frame}[fragile]\frametitle{Poisson Regression with Robust Standard Errors}
 	
+	\begin{itemize}
+		
+		\item Simple to implement through software such as R with the "sandwich" library
+
+		\item Everything else is kept the same, such as the values of $\hat{\beta}$ ( themaximum likelihood estimates of $\beta$) as well as their interpretations
+
+	\end{itemize}
 	
 \end{frame}
 
+
+
+\begin{frame}[fragile]\frametitle{Regression for Data with Binary Outcomes}
+
+	Multiple methods for regression of data with binary outcomes
+	
+	\begin{itemize}
+	
+		\item Logistic Regression is a popular alternative
+	
+	\end{itemize}
+	
+	Many real-world scenarios can be modeled with binary regression
+	
+	\begin{itemize}
+	
+		\item Health-related problems such as association of disease and certain factors
+		
+		\item Widely used methods in Epidemiology and Public Health
+	
+	\end{itemize}
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Topics of Videos in this Series}
+	
+	\begin{itemize}
+	
+		\item Example of implementing Poisson Regression with Robust Standard Errors on real data
+		
+		\item Interpretation of analysis and model parameters
+		
+		\item Diagnosis of models- how do we know it is working?
+	
+	\end{itemize}
+
+	
+\end{frame}
 
 
 \end{document}

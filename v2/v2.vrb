@@ -1,3 +1,13 @@
-\frametitle{Poisson Regression with Robust Standard Errors}
+\frametitle{Topics of Videos in this Series}
+
+	\begin{itemize}
+
+		\item Example of implementing Poisson Regression with Robust Standard Errors on real data
+
+		\item Interpretation of analysis and model parameters
+
+		\item Diagnosis of models- how do we know it is working?
+
+	\end{itemize}
 
 
