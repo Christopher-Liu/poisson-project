@@ -1,0 +1,175 @@
+\documentclass{beamer}
+\mode<presentation>
+{
+  \usetheme{metropolis}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage{bookmark}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{framed}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{ulem}
+
+\def\s{\phantom{-}}
+
+\title{Introduction to Poisson Regression with Robust Standard Errors - Part 2}
+\author{Christopher Liu, Siyu Zhao, Zheming Yu, Runnan Liu, Shiming Zhang}
+\institute{San Diego State University, Stats 610}
+\date{11/29/2018}
+
+\begin{document}
+
+	
+
+\begin{frame}[plain]
+
+	\titlepage
+	
+	\footnote{a}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Objectives of this Video}
+	
+	Objectives of this video:	
+	
+	\begin{itemize}
+	
+		\item Demonstrate Poisson Regression with Robust Standard Errors on real data
+		
+		\item Discuss analysis/results
+		
+		\item Discuss basic diagnostic methods we can use
+
+	\end{itemize}
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{The Data}
+
+	Pima Indians Diabetes dataset
+	
+	\begin{itemize}
+	
+		\item Contains health measurements for subjects and their status of being diabetic or not
+		
+		$ \rightarrow $ Diabetes status is the outcome variable 
+		
+		\item Originally from the University of California, Irvine Machine Learning Repository. Still available through Kaggle
+
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Loading the Data}
+
+	% Insert image of R statement to load the data
+	
+	\begin{itemize}
+	
+		\item 
+
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Getting Familiar with the Data}
+
+	% Insert image of head() of data
+	
+	\begin{itemize}
+	
+		\item 
+
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Transforming the Data}
+
+	% Insert image of R statement to transform the "test" column
+	
+	\begin{itemize}
+	
+		\item 
+
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Running the Regression Analysis}
+
+	% Insert image of "Poisson Regression line"
+	
+	\begin{itemize}
+	
+		\item 
+
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Poisson Regression Analysis Output}
+
+	% Insert image of summary of the Poisson Regression output
+	
+	\begin{itemize}
+	
+		\item 
+
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{The Sandwich Estimators}
+
+	% Insert image of the Sandwich Estimator lines & Coefficient Test
+	
+	\begin{itemize}
+	
+		\item 
+
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Comparison of Regression Outputs}
+
+	% Insert image of both regression outputs
+	
+	\begin{itemize}
+	
+		\item 
+
+	\end{itemize}
+
+\end{frame}
+
+
+\end{document}
