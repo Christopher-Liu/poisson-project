@@ -1,14 +1,12 @@
-\frametitle{The Data}
+\frametitle{In the next video}
 
-	Pima Indians Diabetes dataset
+	In the next video:
 
 	\begin{itemize}
 
-		\item Contains health measurements for subjects and their status of being diabetic or not
+		\item Tutorial of how to apply the Poisson Regression model with Robust Standard Errors to real data with binary outcomes in R
 
-		$ \rightarrow $ Diabetes status is the outcome variable
-
-		\item Originally from the University of California, Irvine Machine Learning Repository. Still available through Kaggle
+		\item Working example of interpreting the output in terms of the theory just discussed
 
 	\end{itemize}
 

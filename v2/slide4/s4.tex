@@ -55,46 +55,78 @@
 
 
 
-\begin{frame}[fragile]\frametitle{Poisson Regression with Robust Standard Errors}
+\begin{frame}[fragile]\frametitle{Intro to Poisson Regression with Robust Standard Errors}
 	
-	Our focus, however, is to discuss \textbf{Poisson Regression with Robust Standard Errors}
+	What is Poisson Regression with \textbf{Robust Standard Errors}?
 
+	$\rightarrow$ Modified Poisson Regression model that can work with outcomes that are binary
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{The Motivation}
+
+	Many real-world scenarios can be modeled with binary regression
+	
 	\begin{itemize}
 	
-		\item Modified Poisson Regression that can work with response variables with binary outcomes
+		\item Health-related problems such as association of disease and certain factors
 		
-		\item Addresses problems with overdispersion
-
+		\item Widely used in fields such as Epidemiology and Public Health
+		
+		\item Allows us to estimate the "Relative Risk"
+	
 	\end{itemize}
 	
 \end{frame}
 
 
 
-\begin{frame}[fragile]\frametitle{Poisson Regression with Robust Standard Errors}
+\begin{frame}[fragile]\frametitle{The Framework of the Model}
+	
+	The framework for the regression model is exactly the same as the "regular" Poisson Regression Model:
+	$$ log(\lambda_i|X_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  
+
+	\begin{itemize}
+	
+		\item Log link function for our GLM
+		
+		\item $\beta$'s are our predictor variables	
+		
+		\item $\lambda_i$ is the expected value of our output variable
+	
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Adjustments to Make}
+
+	Why do we need to modify the model to work with binary data?
 
 	Main problem is with the Poisson assumption of 	
 	$$ E(Y_i) = Var(Y_i) $$ 
-
 	\begin{itemize}
 
 		\item With binomial data, Poisson regression usually underestimates variance of data
 		
-		\item We need a way to address this problem when making inferences
-
+		\item For binomial case, the mean is usually greater than the variance
+		
 	\end{itemize}
 	
 \end{frame}
 
 
 
-\begin{frame}[fragile]\frametitle{Poisson Regression with Robust Standard Errors}
+\begin{frame}[fragile]\frametitle{Adjustments to Make}
 	
 	The only adjustment to make:	
 	
 	\begin{itemize}
 		
-		\item The standard errors of the estimated predictors ($\hat{\beta}$) are replaced with "robust" standard errors from the sandwich estimator 
+		\item The standard errors of the estimated predictors, $\hat{\beta}$, are replaced with "robust" standard errors (also known as Huber-White Standard Errors) 
 		
 		$$ Var(\hat{\beta}) = (X^{T}X)^{-1}X^{T} \Sigma X(X^{T}X)^{-1} $$
 		
@@ -106,13 +138,32 @@
 
 
 
-\begin{frame}[fragile]\frametitle{Poisson Regression with Robust Standard Errors}
+\begin{frame}[fragile]\frametitle{Implementing the Robust Standard Errors}
 	
-	\begin{itemize}
+	$$ Var(\hat{\beta}) = (X^{T}X)^{-1}X^{T} \Sigma X(X^{T}X)^{-1} $$
 		
-		\item Simple to implement through software such as R with the "sandwich" library
+	\begin{itemize}
+	
+		\item The "sandwich" name comes from the appearance of the equation
+		
+		\item Simple to implement/acquire through software such as R with the "sandwich" library
+		
+	\end{itemize}
+	
+\end{frame}
 
-		\item Everything else is kept the same, such as the values of $\hat{\beta}$ (the maximum likelihood estimates of $\beta$) as well as their interpretations
+
+
+\begin{frame}[fragile]\frametitle{Differences in the Models}
+
+	The estimates of the predictor variables are acquired in the same way with the Likelihood Function. As a result:	
+	\begin{itemize}
+
+		\item The values of the $\hat{\beta}$'s are the exact same
+		
+		\item Their estimated standard errors will differ due to the use of the Sandwich Estimator
+		
+		\item Their interpretations change to match the data being analyzed
 
 	\end{itemize}
 	
@@ -120,23 +171,27 @@
 
 
 
-\begin{frame}[fragile]\frametitle{Regression for Data with Binary Outcomes}
+\begin{frame}[fragile]\frametitle{Interpretation of the Predictors}
 
-	Multiple methods for regression of data with binary outcomes
+	Note the derivation is exactly the same:
 	
+	$$ log(\lambda_i|x+1) - log(\lambda_i|x) $$
+	$$ = \beta_0 + \beta_1 (x + 1) - (\beta_0 + \beta_1 x)$$ 
+	$$ = \beta_1 $$
+	$$ \implies \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = e^{\beta_1} $$
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Interpretation of the Predictors}
+
+	But we are now working with binomial data
 	\begin{itemize}
 	
-		\item Logistic Regression is a popular alternative
-	
-	\end{itemize}
-	
-	Many real-world scenarios can be modeled with binary regression
-	
-	\begin{itemize}
-	
-		\item Health-related problems such as association of disease and certain factors
+		\item The expected value of the output is a probability
 		
-		\item Widely used methods in Epidemiology and Public Health
+		\item The expected value of "regular" Poisson Regression outputs is a count 
 	
 	\end{itemize}
 	
@@ -144,20 +199,34 @@
 
 
 
-\begin{frame}[fragile]\frametitle{The Data}
+\begin{frame}[fragile]\frametitle{Parameter Interpretation Example}
+	
+	Ex. Assume our model gives: $$ \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = 1.15 $$
+	
+	\begin{itemize}
+		
+		\item An increase in $x$ by $1$ unit, with every other predictor held constant, increases the \textbf{probability of the outcome} by $15$ percent
+	
+	\end{itemize}
+	
+	Compare this with the interpretation for the "regular" Poisson Regression model
+	
+\end{frame}
 
-	Pima Indians Diabetes dataset
+
+
+\begin{frame}[fragile]\frametitle{In the next video}
+	
+	In the next video:	
 	
 	\begin{itemize}
 	
-		\item Contains health measurements for subjects and their status of being diabetic or not
+		\item Tutorial of how to apply the Poisson Regression model with Robust Standard Errors to real data with binary outcomes in R
 		
-		$ \rightarrow $ Diabetes status is the outcome variable 
+		\item Working example of interpreting the output in terms of the theory just discussed
 		
-		\item Originally from the University of California, Irvine Machine Learning Repository. Still available through Kaggle
-
 	\end{itemize}
-
+	
 \end{frame}
 
 
