@@ -1,0 +1,14 @@
+\frametitle{The Data}
+
+	Pima Indians Diabetes dataset
+
+	\begin{itemize}
+
+		\item Contains health measurements for subjects and their status of being diabetic or not
+
+		$ \rightarrow $ Diabetes status is the outcome variable
+
+		\item Originally from the University of California, Irvine Machine Learning Repository. Still available through Kaggle
+
+	\end{itemize}
+

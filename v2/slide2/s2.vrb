@@ -1,10 +1,14 @@
-\frametitle{Comparison of Regression Outputs}
+\frametitle{Objectives of this Video}
 
-	% Insert image of both regression outputs
+	Objectives of this video:
 
 	\begin{itemize}
 
-		\item
+		\item Demonstrate Poisson Regression with Robust Standard Errors on real data
+
+		\item Discuss analysis/results
+
+		\item Discuss basic diagnostic methods we can use
 
 	\end{itemize}
 

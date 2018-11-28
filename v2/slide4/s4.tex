@@ -20,7 +20,7 @@
 
 \def\s{\phantom{-}}
 
-\title{Introduction to Poisson Regression with Robust Standard Errors - Part 1}
+\title{Introduction to Poisson Regression with Robust Standard Errors - Part 4}
 \author{Christopher Liu, Siyu Zhao, Zheming Yu, Runnan Liu, Shiming Zhang}
 \institute{San Diego State University, Stats 610}
 \date{11/29/2018}
@@ -28,70 +28,19 @@
 \begin{document}
 
 	
-
-\begin{frame}[plain]
-
-	\titlepage
 	
-	\footnote{a}
+\begin{frame}[fragile]\frametitle{Objectives of the Video}
 
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{The Poisson Distribution}
-
-	A random variable Y is said to have a Poisson distribution with parameter $\lambda$ if its probability is given by the probability mass function
-	$$ Pr(Y = y) = \frac{e^{-\lambda}\lambda^{y}}{y!} $$
-	for $\lambda > 0$ and y = 0, 1, 2, ... 
- 
-	The mean and variance of this distribution can be shown to be
-	$$ E(Y) = Var(Y) = \lambda $$ 
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}
-	In Poisson Regression:
-	
 	\begin{itemize}
 	
-		\item Model used when the desired response variable, $Y_{i}$, is a count (eg. Number of vehicle accidents per year, number of visits to a website over a certain time span, etc)
-		\item We can also have the response variable be $Y_{i}$/t, the rate at which the event happens with t being an interval representing time, space, or some other grouping of interest
-
-	\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}
-
-	\begin{itemize}
-		
-		\item The regression model with the log link function:
- 		$$ log(\lambda_i|X_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  		
- 		where $ E(Y_i|X_i) = \lambda_i = e^{X_i \beta}$
-
-		\item Predictor variables are estimated by maximizing the likelihood function:
-		$$ L(\beta) = \prod_{i=1}^{n} f(Y_i) = \prod_{i=1}^{n} \frac{ e^{-\lambda_i} \lambda_i^{Y_i} }{Y_i!} $$
-		
-	\end{itemize}
+		\item Discuss the motivation for the Poisson Regression model with Robust Standard Errors
+			
+		\item Understand the difference between this model and the "regular" Poisson Regression model		
+				
+		\item Understand the interpretation of the model's parameters
 	
-\end{frame}
+	\end{itemize}	
 
-
-
-\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}	
-	
-	Take the simple case: $$ log(\lambda_i|x) = \beta_0 + \beta_1 x $$
-
-	Consider the difference between the mean response given $(x+1)$ and the mean response given $x$: 
-			  $$ log(\lambda_i|x+1) - log(\lambda_i|x) $$
-			  $$ = \beta_0 + \beta_1 (x + 1) - (\beta_0 + \beta_1 x) = \beta_1 $$
-			  $$ \implies \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = e^{\beta_1} $$
-	
 \end{frame}
 
 
@@ -185,20 +134,22 @@
 
 
 
-\begin{frame}[fragile]\frametitle{Topics of Videos in this Series}
+\begin{frame}[fragile]\frametitle{The Data}
+
+	Pima Indians Diabetes dataset
 	
 	\begin{itemize}
 	
-		\item Example of implementing Poisson Regression with Robust Standard Errors on real data
+		\item Contains health measurements for subjects and their status of being diabetic or not
 		
-		\item Interpretation of analysis and model parameters
+		$ \rightarrow $ Diabetes status is the outcome variable 
 		
-		\item Diagnosis of models- how do we know it is working?
-	
+		\item Originally from the University of California, Irvine Machine Learning Repository. Still available through Kaggle
+
 	\end{itemize}
 
-	
 \end{frame}
+
 
 
 \end{document}

@@ -39,6 +39,80 @@
 
 
 
+\begin{frame}[fragile]\frametitle{Objectives of the Video}
+
+	\begin{itemize}
+	
+		\item Develop a theoretical basis for the Poisson Regression Model
+		
+		\item Understand the interpretation of the model's parameters
+		
+		\item Understand the uses and limitations of this specific regression model
+	
+	\end{itemize}	
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{The Poisson Distribution}
+
+	A random variable Y is said to have a Poisson distribution with parameter $\lambda$ if its probability is given by the probability mass function
+	$$ Pr(Y = y) = \frac{e^{-\lambda}\lambda^{y}}{y!} $$
+	for $\lambda > 0$ and y = 0, 1, 2, ... 
+ 
+	The mean and variance of this distribution can be shown to be
+	$$ E(Y) = Var(Y) = \lambda $$ 
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}
+	In Poisson Regression:
+	
+	\begin{itemize}
+	
+		\item Model used when the desired response variable, $Y_{i}$, is a count (eg. Number of vehicle accidents per year, number of visits to a website over a certain time span, etc)
+		\item We can also have the response variable be $Y_{i}$/t, the rate at which the event happens with t being an interval representing time, space, or some other grouping of interest
+
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}
+
+	\begin{itemize}
+		
+		\item The regression model with the log link function:
+ 		$$ log(\lambda_i|X_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  		
+ 		where $ E(Y_i|X_i) = \lambda_i = e^{X_i \beta}$
+
+		\item Predictor variables are estimated by maximizing the likelihood function:
+		$$ L(\beta) = \prod_{i=1}^{n} f(Y_i) = \prod_{i=1}^{n} \frac{ e^{-\lambda_i} \lambda_i^{Y_i} }{Y_i!} $$
+		
+	\end{itemize}
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}	
+	
+	Take the simple case: $$ log(\lambda_i|x) = \beta_0 + \beta_1 x $$
+
+	Consider the difference between the mean response given $(x+1)$ and the mean response given $x$: 
+			  $$ log(\lambda_i|x+1) - log(\lambda_i|x) $$
+			  $$ = \beta_0 + \beta_1 (x + 1) - (\beta_0 + \beta_1 x) = \beta_1 $$
+			  $$ \implies \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = e^{\beta_1} $$
+	
+\end{frame}
+
+
+
+
 \begin{frame}[fragile]\frametitle{Objectives of this Video}
 	
 	Objectives of this video:	
@@ -55,121 +129,6 @@
 	
 \end{frame}
 
-
-
-\begin{frame}[fragile]\frametitle{The Data}
-
-	Pima Indians Diabetes dataset
-	
-	\begin{itemize}
-	
-		\item Contains health measurements for subjects and their status of being diabetic or not
-		
-		$ \rightarrow $ Diabetes status is the outcome variable 
-		
-		\item Originally from the University of California, Irvine Machine Learning Repository. Still available through Kaggle
-
-	\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{Loading the Data}
-
-	% Insert image of R statement to load the data
-	
-	\begin{itemize}
-	
-		\item 
-
-	\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{Getting Familiar with the Data}
-
-	% Insert image of head() of data
-	
-	\begin{itemize}
-	
-		\item 
-
-	\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{Transforming the Data}
-
-	% Insert image of R statement to transform the "test" column
-	
-	\begin{itemize}
-	
-		\item 
-
-	\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{Running the Regression Analysis}
-
-	% Insert image of "Poisson Regression line"
-	
-	\begin{itemize}
-	
-		\item 
-
-	\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{Poisson Regression Analysis Output}
-
-	% Insert image of summary of the Poisson Regression output
-	
-	\begin{itemize}
-	
-		\item 
-
-	\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{The Sandwich Estimators}
-
-	% Insert image of the Sandwich Estimator lines & Coefficient Test
-	
-	\begin{itemize}
-	
-		\item 
-
-	\end{itemize}
-
-\end{frame}
-
-
-
-\begin{frame}[fragile]\frametitle{Comparison of Regression Outputs}
-
-	% Insert image of both regression outputs
-	
-	\begin{itemize}
-	
-		\item 
-
-	\end{itemize}
-
-\end{frame}
 
 
 \end{document}
