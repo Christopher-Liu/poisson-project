@@ -55,26 +55,29 @@
 
 
 
-\begin{frame}[fragile]\frametitle{The Poisson Distribution}
+\begin{frame}[fragile]\frametitle{Recap of the Poisson Distribution}
 
-	A random variable Y is said to have a Poisson distribution with parameter $\lambda$ if its probability is given by the probability mass function
+	Recall $Y \sim Poisson(\lambda)$ if:
 	$$ Pr(Y = y) = \frac{e^{-\lambda}\lambda^{y}}{y!} $$
 	for $\lambda > 0$ and y = 0, 1, 2, ... 
  
-	The mean and variance of this distribution can be shown to be
+	Also its mean and variance is given by:
 	$$ E(Y) = Var(Y) = \lambda $$ 
 
 \end{frame}
 
 
 
-\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}
-	In Poisson Regression:
+\begin{frame}[fragile]\frametitle{Introduction to the Poisson Regression Model}
+	The Poisson Regression model:
 	
 	\begin{itemize}
 	
-		\item Model used when the desired response variable, $Y_{i}$, is a count (eg. Number of vehicle accidents per year, number of visits to a website over a certain time span, etc)
-		\item We can also have the response variable be $Y_{i}$/t, the rate at which the event happens with t being an interval representing time, space, or some other grouping of interest
+		\item Used to model situations where the desired output, $Y_{i}$, is a count of something
+		
+		\item $Y_i$ is a random variable with a Poisson distribution
+		
+		\item Examples include the number of vehicle accidents per year or the number of visits to a website over a certain time span
 
 	\end{itemize}
 
@@ -82,49 +85,101 @@
 
 
 
-\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}
+\begin{frame}[fragile]\frametitle{Generalized Linear Models}
 
-	\begin{itemize}
+	The Poisson Regression Model is a \textbf{Generalized Linear Model} (GLM) with the general form:
+	$$ f(\beta,X) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$
+
+	$f(\beta,X)$ is called the \textbf{Link Function} and relates the expected value of the output variable, $Y_i$, to the linear equation
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Poisson Regression as a Generalized Linear Model}
+
+	The Poisson Regression model uses the log link function:
+ 	$$ log(\lambda_i|X_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  		
+ 	where $ log(\lambda_i|X_i) = log[E(Y_i|X_i)] $
 		
-		\item The regression model with the log link function:
- 		$$ log(\lambda_i|X_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  		
- 		where $ E(Y_i|X_i) = \lambda_i = e^{X_i \beta}$
+	
+\end{frame}
 
-		\item Predictor variables are estimated by maximizing the likelihood function:
+
+
+\begin{frame}[fragile]\frametitle{Estimating the Predictor Variables}
+
+	The predictor variables for the regression equation are estimated by maximizing the likelihood function:
 		$$ L(\beta) = \prod_{i=1}^{n} f(Y_i) = \prod_{i=1}^{n} \frac{ e^{-\lambda_i} \lambda_i^{Y_i} }{Y_i!} $$
 		
+	We call them the maximum likelihood estimates and denote as $\hat{\beta}$
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Interpreting the Parameters}	
+	
+	Given our regression model
+	$$ log(\lambda_i|X_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  
+	with the predictor variables $\beta_0, \beta_1, ..., \beta_p$
+	
+	\begin{itemize}
+	
+		\item How do we interpret the $\beta_i$'s with respect to our data?	
+	
 	\end{itemize}
 	
 \end{frame}
 
 
 
-\begin{frame}[fragile]\frametitle{Introduction to Poisson Regression}	
+\begin{frame}[fragile]\frametitle{Interpreting the Parameters}	
 	
 	Take the simple case: $$ log(\lambda_i|x) = \beta_0 + \beta_1 x $$
 
-	Consider the difference between the mean response given $(x+1)$ and the mean response given $x$: 
-			  $$ log(\lambda_i|x+1) - log(\lambda_i|x) $$
-			  $$ = \beta_0 + \beta_1 (x + 1) - (\beta_0 + \beta_1 x) = \beta_1 $$
-			  $$ \implies \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = e^{\beta_1} $$
+	Consider the difference between the mean response given $(x+1)$ and the mean response given $x$
 	
 \end{frame}
 
 
 
+\begin{frame}[fragile]\frametitle{Interpreting the Parameters}
+	Consider the difference between the mean response, $\lambda_i$ given $(x+1)$ and the mean response, $\lambda_i$, given $x$:
+	$$ log(\lambda_i|x+1) - log(\lambda_i|x) $$
+	$$ = \beta_0 + \beta_1 (x + 1) - (\beta_0 + \beta_1 x)$$ 
+	$$ = \beta_1 $$
+	$$ \implies \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = e^{\beta_1} $$
+\end{frame}
 
-\begin{frame}[fragile]\frametitle{Objectives of this Video}
+
+
+\begin{frame}[fragile]\frametitle{Parameter Interpretation Example}
 	
-	Objectives of this video:	
+	Ex. Assume our model gives: $$ \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = 1.15 $$
 	
 	\begin{itemize}
 	
-		\item Demonstrate Poisson Regression with Robust Standard Errors on real data
+		\item $(\lambda_i|x+1)$ is $15$ percent greater than $(\lambda_i|x)$
 		
-		\item Discuss analysis/results
-		
-		\item Discuss basic diagnostic methods we can use
+		\item An increase in $x$ by $1$ unit, with every other predictor held constant, increases the expected value/count by $.15$
+	
+	\end{itemize}
+	
+\end{frame}
 
+
+
+\begin{frame}[fragile]\frametitle{In the next video}
+	
+	In the next video:	
+	
+	\begin{itemize}
+	
+		\item Tutorial of how to apply the Poisson Regression model to real data in R
+		
+		\item Working example of interpreting the output in terms of the theory just discussed
+		
 	\end{itemize}
 	
 \end{frame}

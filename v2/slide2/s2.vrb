@@ -1,14 +1,12 @@
-\frametitle{Objectives of this Video}
+\frametitle{In the next video}
 
-	Objectives of this video:
+	In the next video:
 
 	\begin{itemize}
 
-		\item Demonstrate Poisson Regression with Robust Standard Errors on real data
+		\item Tutorial of how to apply the Poisson Regression model to real data in R
 
-		\item Discuss analysis/results
-
-		\item Discuss basic diagnostic methods we can use
+		\item Working example of interpreting the output in terms of the theory just discussed
 
 	\end{itemize}
 

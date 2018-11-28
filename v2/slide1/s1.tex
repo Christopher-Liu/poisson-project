@@ -39,21 +39,85 @@
 
 
 
-\begin{frame}[fragile]\frametitle{Topics of Videos in this Series}
+\begin{frame}[fragile]\frametitle{Content Map of the Video Series}
 	
+	Video 1: Introduction to the Poisson distribution
+	
+	Video 2: Introduction to Poisson Regression for count data
+		
+	Video 3: Working example in R of the Poisson Regression model for count data		
+		
+	Video 4: Introduction to Poisson Regression with Robust Standard Errors for binary outcome data
+		
+	Video 5: Working example in R of the Poisson Regression model with Robust Standard Errors
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Goals of this Video}
+
+	The goal is to cover the Poisson distribution
+	
+	$\rightarrow$ If you have prior knowledge of the Poisson distribution, feel free to move ahead to the second video in which we will begin introducing the Poisson Regression model
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{The Poisson Distribution}
+
+	A random variable $Y$ is said to have a Poisson distribution with parameter $\lambda$ if its probability is given by the probability mass function
+	$$ Pr(Y = y) = \frac{e^{-\lambda}\lambda^{y}}{y!} $$
+	for $\lambda > 0$ and y = 0, 1, 2, ...  
+ 
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Expected Value and Variance}
+
+	For a random variable $Y \sim Poisson(\lambda)$, the expected value (mean) and variance can be shown to be
+	$$ E(Y) = Var(Y) = \lambda $$ 
+	
+	Note: $E(Y)$ and $Var(Y)$ are equal to each other- this will be important to consider when we talk about regression!
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Uses for the Poisson Distribution}
+
+	The Poisson distribution is used to describe random variables that give the count of some event per unit time, space, or other grouping
+	
+	For example:
 	\begin{itemize}
+
+		\item $W =$ number of emergency phone alls per square kilometer	in a region
 	
-		\item Example of implementing Poisson Regression with Robust Standard Errors on real data
+		\item $X =$ number of accidents at an intersection per week
 		
-		\item Interpretation of analysis and model parameters
-		
-		\item Diagnosis of models- how do we know it is working?
+		\item $Y =$ number of births at a hospital per day
 	
 	\end{itemize}
 
-	
 \end{frame}
 
+
+
+\begin{frame}[fragile]\frametitle{In the Next Video}
+
+	In the next video:
+	\begin{itemize}
+
+		\item Discuss how this distribution helps us model data
+		
+		\item Learn the theory behind the Poisson Regression Model
+	
+	\end{itemize}
+
+\end{frame}
 
 
 \end{document}

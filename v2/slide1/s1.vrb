@@ -1,13 +1,11 @@
-\frametitle{Topics of Videos in this Series}
+\frametitle{In the Next Video}
 
+	In the next video:
 	\begin{itemize}
 
-		\item Example of implementing Poisson Regression with Robust Standard Errors on real data
+		\item Discuss how this distribution helps us model data
 
-		\item Interpretation of analysis and model parameters
-
-		\item Diagnosis of models- how do we know it is working?
+		\item Learn the theory behind the Poisson Regression Model
 
 	\end{itemize}
-
 
