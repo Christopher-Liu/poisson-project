@@ -1,0 +1,63 @@
+==================
+slide 1
+==================
+Hello and welcome to our video series on the Poisson Regression Model and the Poisson Regression Model with Robust Standard Errors
+
+This is the first video in our five part series where we will introduce and discuss the regression models and provide working tutorials and examples of them on R
+
+
+==================
+slide 2:
+==================
+As a guide to the series, you have here the designated contents of each video
+
+We will begin with an introduction to the Poisson Distribution, followed by an introduction to the the Poisson Regression model for count data 
+
+Following that, we will provide a working example in R so we can actively connect the theory to application
+
+AFterward, we will discuss the theory behind the Poisson Regression Model with Robust Standard Errors that can be applied to data with binary outcomes
+
+And in the same way, we will follow up the theory and close off our video series with a working example in R
+
+==================
+slide 3:
+==================
+As previously state, the goals of this first video is to cover the Poisson distribution, for which the regression model is named after and based off of
+
+This concept will be familiar to many of you who have taken an introductory statistics course in the past, so feel free to skip ahead to the second video if that is the case
+
+
+==================
+slide 4:
+==================
+Now, a random variable Y is said to have a poisson distribution if its probabilty of taking on some value is given by the function shown on the screen
+
+Note that the value of lambda must be positive and Y in this case can only take on non-negative integer values
+
+
+==================
+slide 5:
+==================
+For random variables of a Poisson distribution with parameter lambda, both their expected value and variance will be equal to lambda
+
+Pay extra note to this property of the Poisson distribution, as consequences of this will come up again in later videos when we discuss the Poisson Regression models 
+
+==================
+slide 6:
+==================
+So recall that poisson random variables can only take on non-negative integer values such as 0, 1, 2, 3, and so on
+
+The reason for this is because the distribution is used to describe the counts of some event per unit time, space, or other type of grouping
+
+For example, the Poisson distribution would be apt to model random variables that represent the number of emergency phone calls per square kilometer in a region, the number of accidents at an intersection per week, or the number of births at a hospital per day
+
+Notice here that the first grouping was spatial while the latter two were temporal groupings
+
+==================
+slide 7:
+==================
+Alright, that's it for the necessary background of the Poisson Distribution
+
+We now have enough to go on to begin our discussion of the Poisson Regression model- beginning with using it to model data that deals with the counts of something
+
+We will see you in the next video

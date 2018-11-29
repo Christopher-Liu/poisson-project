@@ -1,0 +1,145 @@
+===================
+slide1
+===================
+Hello and welcome back to our video series on Poisson Regression and Poisson Regression with Robust Standard Errors
+
+This is the second video of a five part series
+
+
+===================
+slide2
+===================
+In this video, we will finally begin to discuss the Poisson Regression Model in order to develop the necessary theoretical background and basis in order to begin applying it in real projects
+
+We will need to understand the interpretation of the model's parameters as well as understand the uses and lmitations of this specific regression model
+
+
+===================
+slide3
+===================
+As a quick recap, recall that the probability distribution function of a poisson random variable is given by the following function, the values of the random variable only take on non-negative integers, and finally the mean and variance are both equal to the same value- lambda, which is the parameter of the distribution
+
+
+===================
+slide4
+===================
+Now we can finally begin to introduce the Poisson Regression Model
+
+As a model, we use it to model situations where the desired output is the count of something
+
+We have an output variable, in our case Y sub i, and Y sub i follows a poisson distribution
+
+Similar to the examples of what the Poisson Distribution can describe, we can use the Poisson Regression model to develop a model for situations such as the number of vehicle accidents per year ot the number of visits to a website over some specified timer span
+
+
+===================
+slide5
+===================
+The Poisson Regression Model falls under a family of models called Generalized Linear Models, or GLM's
+
+GLM's are basically equations where we can model the expected value of an output variable by a linear equation of predictor variables and input variables. 
+
+In this case, the predictor variables are the various Beta terms, while the input values are the various x terms
+
+One more feature of GLM's is the concept of a link function
+
+Sometimes the linear equation  directly models the expected value of the output variable, but othertimes we can have the linear equation model a function of the expected value of the output variable
+
+We will talk more about this on the next slide
+
+Here we have the general form of GLM's written out
+
+The final value of capital X sub i times Beta is the compact vector notation way of writing out this equation. For this series, we will stick to writing out the full equation 
+
+
+===================
+slide6
+===================
+As a GLM, the Poisson Regression model utilizes the log link function
+
+In regard to what we just previously said about link functions, this means that the linear equation of betas and x's models the log of the expected value of the output variable
+
+Here we have the full model written out, complete with the log link function
+
+Take note that the linear equation models the log of the expected value of the output variable- in our case represented by lambda
+
+
+===================
+slide7
+===================
+Given all of the predictor variables, we need to consider how we will find the right combination of values to best model whatever data we have
+
+The betas for the regression equation are estimated by maximizing the likelihood function after plugging in all of the input values based on our data
+
+Show on the screen, if we have n sets of data, we will be multiplying together a product of n different factors
+
+This makes for working with the likelihood function quite complicated
+
+In fact, for our case there is no closed-form solution for the respective beta values to maximize this equation, so we resort to numerical methods that can be easily computed with a computer
+
+With modern processing power, software such as R generally will have no trouble maximizing this equation to find the predictor values we want
+
+The specific set of beta values that maximize this equation are aptly called the maximum likelihood estimates and denoted with the hat notation- we simply refer to them casually as beta hat
+
+
+===================
+slide8
+===================
+So now we've discussed the model and how to calculate the parameters that need to go into our model, how do we interpret the values we actually get?
+
+For each of our p+1 beta values, the question is: how do we interpret their values with respect to the data that we optimized them for?
+
+
+===================
+slide9
+===================
+Take the simple case
+
+If we have a Poisson Regression model with only one input variable, we will consider the difference between the mean response given an input of (x+1) versus the mean response given an input of x for this particular model
+
+
+===================
+slide10
+===================
+Working out this equation, the interpretation of the beta's should become clear
+
+Considering the difference, we see it simply breaks down into just the difference of our models where the first has (x+1) plugged in while the second has just x plugged in
+
+Most terms cancel out and the equation simplifies to just beta 1
+
+Now, recall the properties of logarithms
+
+If we have a difference of two log terms, it is equivalent to the log of the ratio of those two terms respectively
+
+Using this property, we can arrive at the last line which is where the interpretation comes together
+
+The ratio of the model for (x+1) as input versus (x) as an input is equal to e to the power of beta_1- the predictor variable that the input is associated with
+
+So, e to the power of the beta_1 is actually equal to the percentage increase of the expected value of the output variable given an increase of 1 unit to the input variable associated with beta_1
+
+To illustrate this, consider an example
+
+
+===================
+slide11
+===================
+Here, let us assume that e to the power of beta 1 is equal to 1.15
+
+Going off our intuition from the previous slide, we interpret this as the expected value of the output variable given a 1 unit increase to x is 15 percent greater than just inputting x itself
+
+What this meanas is that if we increase x by 1 unit- while holding every other predictor value constant- we expect to see the mean value of the count increase by 15 percent
+
+Say, if we had a model where our output was the number of visitors to a news website per day and x was the number of articles on the site- this ratio value of 1.15 tells us that for every extra article we add onto the site while keeping everything else the same, we should expect to see a 15% increase in the number of in visitors
+
+With this, we know enough about the framework of the Poisson Regression model and how to interpret the outputs of our analysis to work on a live example with real data
+
+===================
+slide12
+===================
+In the next video, we will go through an example of Poisson Regression on real data in R
+
+We will go through doing the regression step by step and interpret the results of the analysis based off the intuition that we've derived throughout this current video
+
+We'll see you there
+
+
