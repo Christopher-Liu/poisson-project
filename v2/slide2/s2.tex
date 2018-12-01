@@ -88,9 +88,9 @@
 \begin{frame}[fragile]\frametitle{Generalized Linear Models}
 
 	The Poisson Regression Model is a \textbf{Generalized Linear Model} (GLM) with the general form:
-	$$ f(\beta,X) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$
+	$$ g[E(Y_i)] = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$
 
-	$f(\beta,X)$ is called the \textbf{Link Function} and relates the expected value of the output variable, $Y_i$, to the linear equation
+	$g[E(Y_i)]$ is called the \textbf{Link Function} and relates the expected value of the output variable, $Y_i$, to the linear equation
 	
 \end{frame}
 
@@ -99,8 +99,8 @@
 \begin{frame}[fragile]\frametitle{Poisson Regression as a Generalized Linear Model}
 
 	The Poisson Regression model uses the log link function:
- 	$$ log(\lambda_i|X_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  		
- 	where $ log(\lambda_i|X_i) = log[E(Y_i|X_i)] $
+ 	$$ log[E(Y_i|X_i)] = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  		
+ 	where $ g[E(Y_i|X_i)] = log[E(Y_i|X_i)] $
 		
 	
 \end{frame}
@@ -121,7 +121,7 @@
 \begin{frame}[fragile]\frametitle{Interpreting the Parameters}	
 	
 	Given our regression model
-	$$ log(\lambda_i|X_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  
+	$$ log[E(Y_i|X_i)] = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  
 	with the predictor variables $\beta_0, \beta_1, ..., \beta_p$
 	
 	\begin{itemize}
@@ -136,7 +136,7 @@
 
 \begin{frame}[fragile]\frametitle{Interpreting the Parameters}	
 	
-	Take the simple case: $$ log(\lambda_i|x) = \beta_0 + \beta_1 x $$
+	Take the simple case: $$ log[E(Y_i|x)] = \beta_0 + \beta_1 x $$
 
 	Consider the difference between the mean response given $(x+1)$ and the mean response given $x$
 	
@@ -146,11 +146,11 @@
 
 \begin{frame}[fragile]\frametitle{Interpreting the Parameters}
 
-	Consider the difference between the mean response, $\lambda_i$ given $(x+1)$ and the mean response, $\lambda_i$, given $x$:
-	$$ log(\lambda_i|x+1) - log(\lambda_i|x) $$
+	Consider the difference between the mean response, $E(Y_i)$ given $(x+1)$ and the mean response, $E(Y_i)$, given $x$:
+	$$ log[E(Y_i|x+1)] - log[E(Y_i|x)] $$
 	$$ = \beta_0 + \beta_1 (x + 1) - (\beta_0 + \beta_1 x)$$ 
 	$$ = \beta_1 $$
-	$$ \implies \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = e^{\beta_1} $$
+	$$ \implies \frac{E(Y_i|x+1)}{E(Y_i|x)} = e^{\beta_1} $$
 
 \end{frame}
 
@@ -158,11 +158,11 @@
 
 \begin{frame}[fragile]\frametitle{Parameter Interpretation Example}
 	
-	Ex. Assume our model gives: $$ \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = 1.15 $$
+	Ex. Assume our model gives: $$ \frac{E(Y_i|x+1)}{E(Y_i|x)} = 1.15 $$
 	
 	\begin{itemize}
 	
-		\item $(\lambda_i|x+1)$ is $15$ percent greater than $(\lambda_i|x)$
+		\item $E(Y_i|x+1)$ is $15$ percent greater than $E(Y_i|x)$
 		
 		\item An increase in $x$ by $1$ unit, with every other predictor held constant, increases the expected value/count by $15$ percent
 	

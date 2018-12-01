@@ -86,7 +86,7 @@
 \begin{frame}[fragile]\frametitle{The Framework of the Model}
 	
 	The framework for the regression model is exactly the same as the "regular" Poisson Regression Model:
-	$$ log(\lambda_i|X_i) = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  
+	$$ log[E(Y_i)] = \beta_0 + \beta_1 x_{i1} + ... + \beta_p x_{ip} = X_i \beta $$  
 
 	\begin{itemize}
 	
@@ -94,7 +94,7 @@
 		
 		\item $\beta$'s are our predictor variables	
 		
-		\item $\lambda_i$ is the expected value of our output variable
+		\item $E(Y_i) = \lambda_i$, the expected value of our output variable
 	
 	\end{itemize}
 
@@ -110,7 +110,7 @@
 	$$ E(Y_i) = Var(Y_i) $$ 
 	\begin{itemize}
 
-		\item With binomial data, Poisson regression usually underestimates variance of data
+		\item With binomial data, Poisson regression usually overestimates the variance of data
 		
 		\item For binomial case, the mean is usually greater than the variance
 		
@@ -120,7 +120,26 @@
 
 
 
-\begin{frame}[fragile]\frametitle{Adjustments to Make}
+\begin{frame}[fragile]\frametitle{How the Variance is Overestimated}
+
+	\begin{itemize}
+		\item For the binomial distribution: 
+	\end{itemize}
+		$$ E(X) = np, Var(X) = np(1-p) $$
+		$$ \implies E(X) > Var(X) $$
+	
+	\begin{itemize}
+		\item Under the Poisson Regression model we assume:
+	\end{itemize}
+		$$ Var(Y_i) = E(Y_i) $$
+		
+		$\implies$  The model overestimates the true variance
+	
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{The Robust Standard Errors Estimator}
 	
 	The only adjustment to make:	
 	
@@ -175,10 +194,10 @@
 
 	Note the derivation is exactly the same:
 	
-	$$ log(\lambda_i|x+1) - log(\lambda_i|x) $$
+	$$ log[E(Y_i|x+1)] - log[E(Y_i|x)] $$
 	$$ = \beta_0 + \beta_1 (x + 1) - (\beta_0 + \beta_1 x)$$ 
 	$$ = \beta_1 $$
-	$$ \implies \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = e^{\beta_1} $$
+	$$ \implies \frac{E(Y_i|x+1)}{E(Y_i|x)} = e^{\beta_1} $$
 	
 \end{frame}
 
@@ -201,7 +220,7 @@
 
 \begin{frame}[fragile]\frametitle{Parameter Interpretation Example}
 	
-	Ex. Assume our model gives: $$ \frac{(\lambda_i|x+1)}{(\lambda_i|x)} = 1.15 $$
+	Ex. Assume our model gives: $$ \frac{E(Y_i|x+1)}{E(Y_i|x)} = 1.15 $$
 	
 	\begin{itemize}
 		

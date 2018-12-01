@@ -22,7 +22,7 @@ And in the same way, we will follow up the theory and close off our video series
 ==================
 slide 3:
 ==================
-As previously state, the goals of this first video is to cover the Poisson distribution, for which the regression model is named after and based off of
+As previously stated, the goals of this first video is to cover the Poisson distribution, for which the regression model is named after and based off of
 
 This concept will be familiar to many of you who have taken an introductory statistics course in the past, so feel free to skip ahead to the second video if that is the case
 
@@ -49,7 +49,7 @@ So recall that poisson random variables can only take on non-negative integer va
 
 The reason for this is because the distribution is used to describe the counts of some event per unit time, space, or other type of grouping
 
-For example, the Poisson distribution would be apt to model random variables that represent the number of emergency phone calls per square kilometer in a region, the number of accidents at an intersection per week, or the number of births at a hospital per day
+For example, the Poisson distribution would be apt to model random variables that represent things such as the number of emergency phone calls per square kilometer in a region, the number of accidents at an intersection per week, or the number of births at a hospital per day
 
 Notice here that the first grouping was spatial while the latter two were temporal groupings
 

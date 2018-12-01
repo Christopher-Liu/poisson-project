@@ -1,0 +1,116 @@
+===============
+slide 1
+===============
+Hello and welcome back to our series on Poisson Regression and Poisson resgression with robust standard errors
+
+We've finished our sections on regular poisson regression, so you should now have a good idea on how to apply the regression models to real data on R
+
+
+===============
+slide 2
+===============
+Now we will begin to introduce the modified Poisson Regression method with what we call Robust Standard Errors
+
+For this video, we will discuss the motivation for even considering this modified model, understand the differences between this and the "regular" model, and then of course, understanding how to interpret the parameters and outputs that this modified model gives
+
+
+===============
+slide 3
+===============
+So, the question is, what is Poisson Regression with Robust Standard Errors?
+
+In short, it is a slight modification to the regular Poisson regression model that allows us to apply it to data with binary outcomes
+
+Binary in the sense that the output variable should only take on two possible values- for example whether or not you have a certain illness.
+
+In general, we want to be able to model data that will give us a better idea of whether or not an outcome will occur given a certain scenario
+
+
+===============
+slide 4
+===============
+The reason we care about this type of binary data regression is because many real world situations can be modeled with such a framework
+
+Health-related problems such as trying to quantify the levels of association between certain factors and the onset of a disease is one scenario that sees heavy use of binary data regression
+
+Fields such as epidemiology and public health frequently use binary data regression methods such as logistic regression or our topic of choice, poisson regression with robust standard errors, to build models and estimate these types of associations
+
+A specific example is the ability for poisson regression with robust standard errors to estimate something called the relative risk, which is one of the methods epidemiologists use quantify the strength of association between a disease and certain factors that should contribute to that disease.
+
+
+===============
+slide 5
+===============
+Let's start with the framework of the Poisson Regression model with Robust Standard Errors
+
+In general, most things are the same- especially with the equation of the model itself
+
+We are using the log link function for the GLM with our predictor variables being represented by the betas
+
+Our output variable, Y, is still of a Poisson distribution, so the expected output is Lambda- the expected value of Y
+
+What changes is the interpretation of the output of the model, but more on that later
+
+
+===============
+slide 6
+===============
+So we've said that much of the model is the same as the regular Poisson Regression model, while the type of data they are supposed to analyze are different
+
+The question is, what adjustments we will need to make
+
+The main concern that requires attention is the Poisson distribution's assumption of the expected value being equal to its variance
+
+In practice, that is not always the case, and especially because now that we want to work with binary data, this assumption will usually overestimate the variance of the data itself
+
+
+===============
+slide 7
+===============
+Given this, the only adjustment we really need to make is with the variance of the predictor variables that we are working with
+
+For the maximum likelihood estimates of the predictor variables, we want to replace them with "robust" standard errors- also known as Huber-White Standard Errors
+
+Written in matrix notation, the equation on the screen gives us the robust standard errors that we want to use
+
+
+===============
+slide 8
+===============
+A name you will frequently hear in regards to this robust standard error is the sandwich estimate of the variance
+
+This is due to the appearance of the equation as a covariance matrix being "sandwiched" inbetween products of matrices
+
+The sandwich estimate of variance is simple to compute with software such as R as it has an aptly named sandwich library that has built-in functions to calculate the sandwich estimate
+
+===============
+slide 9
+===============
+Now, outside of the necessary adjustments to make to the model that we've just previously discussed, 
+
+
+
+===============
+slide 10
+===============
+
+
+
+
+===============
+slide 11
+===============
+
+
+
+
+===============
+slide 12
+===============
+
+
+
+
+===============
+slide 13
+===============
