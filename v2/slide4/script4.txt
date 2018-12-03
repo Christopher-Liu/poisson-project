@@ -35,7 +35,7 @@ Health-related problems such as trying to quantify the levels of association bet
 
 Fields such as epidemiology and public health frequently use binary data regression methods such as logistic regression or our topic of choice, poisson regression with robust standard errors, to build models and estimate these types of associations
 
-A specific example is the ability for poisson regression with robust standard errors to estimate something called the relative risk, which is one of the methods epidemiologists use quantify the strength of association between a disease and certain factors that should contribute to that disease.
+A specific example is the ability for Poisson Regression with Robust Standard Errors to estimate something called the relative risk, which is one of the methods epidemiologists use quantify the strength of association between a disease and certain factors that should contribute to that disease.
 
 
 ===============
@@ -67,6 +67,20 @@ In practice, that is not always the case, and especially because now that we wan
 ===============
 slide 7
 ===============
+We illustrate here why the Poisson Regression model theoretically overestimates the true variane
+
+Recall for binomial variables, the expected value is np while the variance is np(1-p)
+
+Since (1-p) is a value between 0 and 1, np(1-p) has to be smaller than np- hence the expected value being greater than the variance of binomial variables
+
+Under our Poisson Regression model, however, we are assuming the variance and expected value are the same
+
+This causes our model to have an estimated variance that is theoretically greater than the variance shown in the binary data
+
+
+===============
+slide 8
+===============
 Given this, the only adjustment we really need to make is with the variance of the predictor variables that we are working with
 
 For the maximum likelihood estimates of the predictor variables, we want to replace them with "robust" standard errors- also known as Huber-White Standard Errors
@@ -75,7 +89,7 @@ Written in matrix notation, the equation on the screen gives us the robust stand
 
 
 ===============
-slide 8
+slide 9
 ===============
 A name you will frequently hear in regards to this robust standard error is the sandwich estimate of the variance
 
@@ -83,34 +97,55 @@ This is due to the appearance of the equation as a covariance matrix being "sand
 
 The sandwich estimate of variance is simple to compute with software such as R as it has an aptly named sandwich library that has built-in functions to calculate the sandwich estimate
 
-===============
-slide 9
-===============
-Now, outside of the necessary adjustments to make to the model that we've just previously discussed, 
-
-
 
 ===============
 slide 10
 ===============
+Now, outside of the necessary adjustments to make to the model that we've just previously discussed, the two regression models are generally the same
 
+Since we use the same likelihood functions, the maximum likelihood estimates for the beta's will be exactly the same
 
+As discussed in the previous slides, the difference lies in the use of the sandwich estimate of the variance for this model
+
+Lastly, because we are applying this model to analyze a different type of data, the interpretations of our model's parameters will differ
 
 
 ===============
 slide 11
 ===============
+We can, however, use the same process of working with the difference of expected values given only a one unit difference in the input variable in order to drive the meaning of the parameters
 
-
+Note that because the model's equation is the same as the regular Poisson Regression model's, all of the steps end up being exactly the same 
 
 
 ===============
 slide 12
 ===============
+What changes in this derivation process is how we interpret the final result
 
-
+Because the expected value of binary variables is a probability, we want to interpret the final line as a ratio of probabilities and not as a ratio of counts
 
 
 ===============
 slide 13
 ===============
+Let's take a look at an example
+
+We will use the same example as in video #2 to illustrate the difference in interpretations
+
+Assume we have the ratio of the expected value of outcome given an input of x+1 versus an input of just x, is equal to 1.15
+
+What this means is that if we increase the input variable, x, by one unit while holding every other predictor constant, the expected value of the PROBABILITY OF THE OUTCOME increases by 15 percent
+
+Compare this to the interpretation of the regular Poisson Regression model where a value of 1.15 means that the expected value of the COUNT increases by 15 percent
+
+
+===============
+slide 14
+===============
+With that, we now have the theoretical background necessary to proceed with an example of how to apply the Poisson Regression model with Robust Standard Errors to some real binary data
+
+In the next video, we will work through an example of how to run this regression model on R
+
+We will see you there
+
